@@ -10,7 +10,7 @@ export default function Home(){
     const [userr, setUser] = useState([])
 
     const fetchProducts = () => {
-        fetch("https://api.escuelajs.co/api/v1/products")
+        fetch("https://api.escuelajs.co/api/v1/products?limit=28&offset=1")
         .then(res => res.json())
         .then(resp => setProducts(resp))
     }
@@ -45,7 +45,9 @@ export default function Home(){
             <button  onClick={() => setCount(count + 1)} type="button" class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-500 dark:text-gray-800 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Click This</button>
 
             </div>
-            <h1 className="text-3xl font-bold text-center mb-2">Get products</h1>
+
+            {/* Fect API products */}
+            <h1 className="text-3xl font-bold text-center dark:text-white mb-2">Get products</h1>
             <p className="flex justify-center ">
                <h1 className="text-white max-w-sm rounded-lg  bg-black p-3 mb-3">
                [GET] https://api.escuelajs.co/api/v1/products
@@ -65,7 +67,8 @@ export default function Home(){
                 }
             </div>
 
-            <h1 className="text-3xl font-bold text-center mb-2">Get categories</h1>
+            {/* fetch API categories */}
+            <h1 className="text-3xl font-bold text-center mb-2 text-white">Get categories</h1>
             <p className="flex justify-center ">
                <h1 className="text-white max-w-sm rounded-lg  bg-black p-3 mb-3">
                [GET] https://api.escuelajs.co/api/v1/categories
@@ -85,7 +88,8 @@ export default function Home(){
                 }
             </div>
             
-            <h1 className="text-3xl font-bold text-center mb-2">Get users</h1>
+            {/* fetch API Users */}
+            <h1 className="text-3xl font-bold text-center mb-2 text-white">Get users</h1>
             <p className="flex justify-center ">
                <h1 className="text-white max-w-sm rounded-lg  bg-black p-3 mb-3">
                [GET] https://api.escuelajs.co/api/v1/user
