@@ -11,6 +11,7 @@ function Card({imageURL, desc, titlee, pricee, categor}){
             <div className="p-5">
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{titlee} </p>
                 <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{desc} </p>
+                <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-2">{pricee} </p>
             </div>
         </div>
     </>
