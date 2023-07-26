@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import Card from "../components/card"
 
 import Loading from "../components/Loading"
+import { Link } from 'react-router-dom';
 
 export default function Home(){
     // Declare Variable
@@ -28,7 +29,10 @@ export default function Home(){
     const fectCategory = () => {
         fetch("https://api.escuelajs.co/api/v1/categories")
         .then(res => res.json())
-        .then(resp => setCategory(resp))
+        .then(resp => {
+            setCategory(resp)
+            setLoading(false)
+        })
     }
     useEffect(() => {
         fectCategory()
@@ -37,7 +41,10 @@ export default function Home(){
     const fectUser = () => {
         fetch("https://api.escuelajs.co/api/v1/users")
         .then(res => res.json())
-        .then(resp => setUser(resp))
+        .then(resp => {
+            setUser(resp)
+            setLoading(false)
+        })
     }
     useEffect(() => {
         fectUser()
@@ -73,11 +80,13 @@ export default function Home(){
                             :
                             products.map((pro) => (
                                 <div key={pro.id}>
+                                    <Link to={`/read/${pro.id}`}>
                                     <Card
                                     imageURL={pro.images[0]}
                                     desc={pro.description}
                                     pricee={pro.price+"$"}
                                     />
+                                    </Link>
                                 </div>
                             ))
                         }
@@ -93,6 +102,14 @@ export default function Home(){
                     <div className="grid content max-w-7xl mx-auto gap-4 md-grid  grid-cols-4 flex"> 
                     
                         {
+                            isLoading ?
+                            <>
+                            <Loading />
+                            <Loading />
+                            <Loading />
+                            <Loading />
+                            </>
+                            :
                             category.map((cat) => (
                                 <div key={cat.id}>
                                     <Card
@@ -114,6 +131,14 @@ export default function Home(){
                     <div className="grid content max-w-7xl mx-auto gap-4 md-grid  grid-cols-4 flex"> 
                     
                         {
+                            isLoading ?
+                            <>
+                            <Loading />
+                            <Loading />
+                            <Loading />
+                            <Loading />
+                            </>
+                            :
                             userr.map((us) => (
                                 <div key={us.id}>
                                     <Card
