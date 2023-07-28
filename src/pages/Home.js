@@ -1,9 +1,9 @@
 // state is variable stock data and data is rendom
 import React, { useEffect, useState } from "react"
 import Card from "../components/card"
-
 import Loading from "../components/Loading"
 import { Link } from 'react-router-dom';
+import { fetchProducts } from "../services/ProductAction";
 
 export default function Home(){
     // Declare Variable
@@ -13,17 +13,21 @@ export default function Home(){
     const [userr, setUser] = useState([])
     const [isLoading, setLoading] = useState(true)
 
-    const fetchProducts = () => {
-        fetch("https://api.escuelajs.co/api/v1/products?limit=28&offset=1")
-        .then(res => res.json())
-        .then(resp => {
-            setProducts(resp)
-            setLoading(false)
-        })
-    }
+    // const fetchProducts = () => {
+    //     fetch("https://api.escuelajs.co/api/v1/products?limit=28&offset=1")
+    //     .then(res => res.json())
+    //     .then(resp => {
+    //         setProducts(resp)
+    //         setLoading(false)
+    //     })
+    // }
     useEffect(() => {
         // call to API
         fetchProducts()
+        .then(resp => {
+            setLoading(false)
+            setProducts(resp)
+        })
     }, [])
 
     const fectCategory = () => {

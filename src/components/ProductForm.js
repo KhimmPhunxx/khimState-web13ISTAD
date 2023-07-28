@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { fetchCategories, insertProduct } from '../services/ProductAction'
+import { fetchCategories, fileUploadToServer, insertProduct } from '../services/ProductAction'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProductForm() {
-
+    const navigate = useNavigate()
     const [product , setProduct] = useState({
         title: "",
         price: 0,
@@ -11,6 +12,7 @@ export default function ProductForm() {
         images: ["https://cdn1.iconfinder.com/data/icons/business-company-1/500/image-512.png"]
     })
     const [categories, setCategories] = useState([])
+    const [source, setSource] = useState("")
 
     const onChangeHandler = (e) => {
         const {name, value} = e.target
@@ -32,6 +34,22 @@ export default function ProductForm() {
     const handleOnSubmit = () =>{
         console.log(' on submit')
         console.log(product)
+
+        // create images object as form data
+        const formData = new FormData()
+        formData.append("file", source)
+        // ----- function to upload data link
+        fileUploadToServer(formData)
+        .then(res => {
+            product.images = [res.data.location]
+            console.log(product.images)
+            // insert product by image
+            insertProduct(product)
+            .then(res => res.json())
+            .then(resp => console.log(resp))
+        })
+        // ----end function
+
         insertProduct(product)
         .then(res => {
             if(res.status == 201){
@@ -39,6 +57,11 @@ export default function ProductForm() {
             }
             res.json()
         })
+    }
+
+    const onPreviweImage= (e) =>{
+        console.log(e.target.files)
+        setSource(e.target.files[0])
     }
 
   return (
@@ -63,7 +86,7 @@ export default function ProductForm() {
             onChange={onChangeHandler}
             />
         </div>
-        <div className='cb-3'>  
+        <div className='mb-6'>  
             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose category</label>
             <select 
             name="categoryId" 
@@ -81,7 +104,7 @@ export default function ProductForm() {
 
         </div>
 
-        <div class="mb-6">
+        <div class="mb-2">
             <label for="large-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descriptions</label>
             <textarea 
             type="text" 
@@ -90,10 +113,28 @@ export default function ProductForm() {
             onChange={onChangeHandler}
             />
         </div>
+
+        {/* Preview Images */}
+        <div className='mb-3 preview'>
+            <img className='w-40' src={source && URL.createObjectURL(source)} alt="Preview Image" />
+
+        </div>
+
+        {/* choose file area */}
+        <div className="mb-6">
+            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>
+            <input 
+            onChange={onPreviweImage} 
+            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" 
+            name="images" 
+            type="file"/>
+        </div>
+
+        {/* button Create Product */}
         <button 
             type="button" 
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            onClick={() =>  handleOnSubmit()}
+            onClick={() => handleOnSubmit()}
             >Create Product</button>
     </main>
   )

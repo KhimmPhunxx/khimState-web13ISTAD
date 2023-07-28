@@ -9,6 +9,7 @@ import About from './pages/About';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ProductForm from './components/ProductForm';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   console.log(products)
@@ -20,6 +21,7 @@ function App() {
         <Route path='/read/:id' element={<Read />} />
         <Route path='/about-us' element={<About />}/>
         <Route path='/create' element={<ProductForm />} />
+        <Route path='/datatable' element={<Dashboard />} />
       </Routes>
     <Footer />
      </>

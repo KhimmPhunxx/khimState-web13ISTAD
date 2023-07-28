@@ -6,7 +6,7 @@ export default function Navbar() {
     const navigate = useNavigate()
   return (
 
-        <header className="sticky top-0"> 
+        <header className="sticky top-0 z-10"> 
             
             <nav class="bg-white border-gray-200 dark:bg-gray-900">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
