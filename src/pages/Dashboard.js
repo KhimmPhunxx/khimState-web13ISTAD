@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
 import { fetchProducts } from '../services/ProductAction';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Dashboard() {
     // distructuring declare
    const [filterProducts, setFilterProducts] = useState([])
    const [saerch , setSearch] = useState("")
+   const navigate = useNavigate()
+
     const columns = [
         {
             name: 'Title',
@@ -24,10 +27,17 @@ export default function Dashboard() {
         },
         {
             name: 'Action',
-            selector: row => <button type="button" class="mt-2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Edit</button>
+            selector: row => <button 
+            onClick={() => navigate("/edit", {
+                state: row
+            })}
+            type="button" 
+            className="mt-2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            >Edit</button>
 
         },
     ];
+   
     
     useEffect(() => {
         fetchProducts()
@@ -36,23 +46,12 @@ export default function Dashboard() {
 
     useEffect(() => {
         const result = filterProducts.filter(pro => {
-            return pro.title && pro.title.toLowerCase().match(saerch.toLowerCase())
+            return saerch == "" ? pro.title :  pro.title && pro.title.toLowerCase().match(saerch.toLowerCase()) 
+          
         })
         setFilterProducts(result)
     }, [saerch])
 
-    const data = [
-        {
-            id: 1,
-            title: 'Beetlejuice',
-            year: '1988',
-        },
-        {
-            id: 2,
-            title: 'Ghostbusters',
-            year: '1984',
-        },
-    ]
 
     useEffect(() => {
         fetchProducts()

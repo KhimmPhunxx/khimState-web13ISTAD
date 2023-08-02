@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { fetchCategories, fileUploadToServer, insertProduct } from '../services/ProductAction'
-import { useNavigate } from 'react-router-dom'
+import { UpdateProduct, fetchCategories, fileUploadToServer, insertProduct, updateProduct } from '../services/ProductAction'
+import { createBrowserRouter, useLocation, useNavigate  } from 'react-router-dom'
 
-export default function ProductForm() {
-    const navigate = useNavigate()
+export default function ProductForm({edit}) {
+
+    // 
+    const location = useLocation()
+
     const [product , setProduct] = useState({
+        id: 0,
         title: "",
         price: 0,
         description: "",
@@ -27,36 +31,66 @@ export default function ProductForm() {
 
     // add categories from Folder services/ProductAction.js
     useEffect(() => {
+        console.log(edit)
+        if(edit){
+            console.log(location.state)
+            const {id, title, price, description, category, images} = location.state
+            product.id = id
+            product.title = title
+            product.description = description
+            product.price = price
+            product.images = images
+
+            console.log(product.images[0])
+        }
         fetchCategories()
         .then(res => setCategories(res))
     }, [])
 
     const handleOnSubmit = () =>{
-        console.log(' on submit')
+        console.log('on submit')
         console.log(product)
 
-        // create images object as form data
-        const formData = new FormData()
-        formData.append("file", source)
-        // ----- function to upload data link
-        fileUploadToServer(formData)
-        .then(res => {
-            product.images = [res.data.location]
-            console.log(product.images)
-            // insert product by image
-            insertProduct(product)
-            .then(res => res.json())
-            .then(resp => console.log(resp))
-        })
-        // ----end function
-
-        insertProduct(product)
-        .then(res => {
-            if(res.status == 201){
-                alert("Your Created is Succesfull!!")
+        // check condition whether create or update
+       
+        if(edit){
+             // source !== "" : User Choose new photos
+            if(source == ""){
+                console.log('id', product.id)
+                console.log(product.categoryId)
+                updateProduct(product, product.id)
+                .then(res => res.json())
+                .then(res => console.log(res))
+            }else{
+                // Choose new Images form local Computer
+                const formData = new FormData()
+                formData.append("file", source)
+                fileUploadToServer(formData)
+                .then(resp => {
+                    product.images = [resp.data.location]
+                    updateProduct(product, product.id)
+                    .then(res => res.json())
+                    .then(res => console.log(res))
+                    
+                })
             }
-            res.json()
-        })
+         }else{
+            // ----- this will excecute when user insert new data 
+            // ----- create images and insert new Product object as form data
+            const formData = new FormData()
+            formData.append("file", source)
+            // ----- function to upload imgage data to server -----
+            fileUploadToServer(formData)
+            .then(res => {
+                product.images = [res.data.location]
+                console.log(product.images)
+                // insert product by image
+                insertProduct(product)
+                .then(res => res.json())
+                .then(resp => console.log(resp))
+            })
+            // ---- end function
+        }
     }
 
     const onPreviweImage= (e) =>{
@@ -72,6 +106,7 @@ export default function ProductForm() {
             placeholder='input title' 
             type="text" 
             name="title" 
+            value={product.title}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
             />
@@ -81,6 +116,7 @@ export default function ProductForm() {
             <input 
             placeholder='$' 
             type="text" 
+            value={product.price}
             name="price" 
             class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
@@ -89,7 +125,8 @@ export default function ProductForm() {
         <div className='mb-6'>  
             <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Choose category</label>
             <select 
-            name="categoryId" 
+            name="categoryId"
+            value={product.categoryId} 
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
             >
@@ -108,6 +145,7 @@ export default function ProductForm() {
             <label for="large-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descriptions</label>
             <textarea 
             type="text" 
+            value={product.description}
             name="description" 
             className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
@@ -116,7 +154,9 @@ export default function ProductForm() {
 
         {/* Preview Images */}
         <div className='mb-3 preview'>
-            <img className='w-40' src={source && URL.createObjectURL(source)} alt="Preview Image" />
+            <img className='w-40' 
+            src={source == "" ? product.images[0] : URL.createObjectURL(source)} 
+            alt="Preview Image" />
 
         </div>
 
@@ -135,7 +175,7 @@ export default function ProductForm() {
             type="button" 
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             onClick={() => handleOnSubmit()}
-            >Create Product</button>
+            >{edit ? "Update Product" : "Create Product"}</button>
     </main>
   )
 }

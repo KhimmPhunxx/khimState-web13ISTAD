@@ -1,5 +1,6 @@
 import axios from "axios"
 import { base_URL } from "../utils/Constent"
+import { products } from './../data/product';
 
 // add categories from browser and 
 export const fetchCategories = async () => {
@@ -35,6 +36,18 @@ export const fileUploadToServer = async (image) => {
         },
         url: `${base_URL}files/upload`,
         data: image
+    })
+    return resp
+}
+
+// Update Product by Product ID
+export const updateProduct = async (product, id) => {
+    let resp = await fetch(`${base_URL}products/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify(product)
     })
     return resp
 }

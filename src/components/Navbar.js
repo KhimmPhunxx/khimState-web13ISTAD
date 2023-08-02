@@ -6,9 +6,8 @@ export default function Navbar() {
     const navigate = useNavigate()
   return (
 
-        <header className="sticky top-0 z-10"> 
-            
-            <nav class="bg-white border-gray-200 dark:bg-gray-900">
+        <header className="sticky top-0 z-10">      
+            <nav class="bg-white border-gray-200 dark:bg-gray-900 border-y border-gray-200">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link to="/" class="flex items-center">
                 <img src="https://khimmphunxx.github.io/vakhim-mini-project-web13/img/logo001.webp" class="h-9 mr-3" alt="" />
@@ -50,8 +49,8 @@ export default function Navbar() {
                      >Read</NavLink>
                     </li>
                     <li>
-                    <NavLink to="/contactpage" 
-                    className={({isActive}) => isActive ? "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" : "dark:text-white"}>Contact</NavLink>
+                    <NavLink to="/datatable" 
+                    className={({isActive}) => isActive ? "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" : "dark:text-white"}>DataTable</NavLink>
                     </li>
                 </ul>
                 </div>

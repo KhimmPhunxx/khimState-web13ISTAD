@@ -11,6 +11,8 @@ import ProductForm from './components/ProductForm';
 import Dashboard from './pages/Dashboard';
 import FormLogin from './pages/FormLogin';
 import Contactus from './pages/Contactus';
+import reportWebVitals from './reportWebVitals';
+import NotFoundPage from './pages/NotFoundPage';
 
 
 function App() {
@@ -23,9 +25,11 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/read/:id' element={<Read />} />
           <Route path='/about-us' element={<About />}/>
-          <Route path='/create' element={<ProductForm />} />
+          <Route path='/create' element={<ProductForm edit={false}/>} />
+          <Route path='/edit' element={<ProductForm edit={true}/>} />
           <Route path='/datatable' element={<Dashboard />} />
           <Route path='/contactpage' element={<Contactus />} />
+          <Route path='/*' element={<NotFoundPage />} />
         </Route>
         <Route path='/loginform' element={<FormLogin /> } />
       </Routes>
