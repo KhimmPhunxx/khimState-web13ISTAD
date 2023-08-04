@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Dashboard() {
     // distructuring declare
    const [filterProducts, setFilterProducts] = useState([])
-   const [saerch , setSearch] = useState("")
+   const [search , setSearch] = useState("")
    const navigate = useNavigate()
 
     const columns = [
@@ -38,6 +38,9 @@ export default function Dashboard() {
         },
     ];
    
+    // const handleOnChange = (e) => {
+    //     console.log(e.target.value)
+    // }
     
     useEffect(() => {
         fetchProducts()
@@ -45,20 +48,21 @@ export default function Dashboard() {
     }, [])
 
     useEffect(() => {
+        console.log(search)
+        console.log(filterProducts)
         const result = filterProducts.filter(pro => {
-            return saerch == "" ? pro.title :  pro.title && pro.title.toLowerCase().match(saerch.toLowerCase()) 
+            return search == "" ? filterProducts : pro.title.toLowerCase().match(search.toLowerCase()) 
           
         })
         setFilterProducts(result)
-    }, [saerch])
-
+    }, [search])
 
     useEffect(() => {
         fetchProducts()
         .then(resp => setFilterProducts(resp))
     }, [])
   return (
-   <main className='max-w-7xl mx-auto '>
+   <main className=" max-w-7xl mx-auto mt-5 ">
          <DataTable
         columns={columns}
         data={filterProducts}
@@ -77,11 +81,12 @@ export default function Dashboard() {
                     type="search" id="default-search"
                     className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Search here"
-                    value={saerch}
+                    value={search}
                     required
                     onChange={(e) => {
                         setSearch(e.target.value)
-                        console.log(saerch)
+                        console.log(search)
+                        // handleOnChange()
                     }}
 
                     />

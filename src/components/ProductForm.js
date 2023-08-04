@@ -50,9 +50,7 @@ export default function ProductForm({edit}) {
     const handleOnSubmit = () =>{
         console.log('on submit')
         console.log(product)
-
         // check condition whether create or update
-       
         if(edit){
              // source !== "" : User Choose new photos
             if(source == ""){

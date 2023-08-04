@@ -13,13 +13,13 @@ import FormLogin from './pages/FormLogin';
 import Contactus from './pages/Contactus';
 import reportWebVitals from './reportWebVitals';
 import NotFoundPage from './pages/NotFoundPage';
+import Book from './pages/Book';
 
 
 function App() {
   console.log(products)
   return (
    <>
-
       <Routes>
         <Route path='/' element={<MainnLayout />}>
           <Route path='/' element={<Home />} />
@@ -30,6 +30,7 @@ function App() {
           <Route path='/datatable' element={<Dashboard />} />
           <Route path='/contactpage' element={<Contactus />} />
           <Route path='/*' element={<NotFoundPage />} />
+          <Route path='/booking' element={<Book />} />
         </Route>
         <Route path='/loginform' element={<FormLogin /> } />
       </Routes>
