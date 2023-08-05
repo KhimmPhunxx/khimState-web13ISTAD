@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component'
-import { fetchProducts } from '../services/ProductAction';
+import { fetchProducts, searchProduct } from '../services/ProductAction';
 import { useNavigate } from 'react-router-dom';
-
 
 export default function Dashboard() {
     // distructuring declare
@@ -37,32 +36,21 @@ export default function Dashboard() {
 
         },
     ];
+    useEffect(() => {
+        searchProduct(search).then(resp => setFilterProducts(resp))
+    }, [search])
    
-    // const handleOnChange = (e) => {
-    //     console.log(e.target.value)
-    // }
-    
     useEffect(() => {
         fetchProducts()
         .then(resp => setFilterProducts(resp))
     }, [])
-
-    useEffect(() => {
-        console.log(search)
-        console.log(filterProducts)
-        const result = filterProducts.filter(pro => {
-            return search == "" ? filterProducts : pro.title.toLowerCase().match(search.toLowerCase()) 
-          
-        })
-        setFilterProducts(result)
-    }, [search])
 
     useEffect(() => {
         fetchProducts()
         .then(resp => setFilterProducts(resp))
     }, [])
   return (
-   <main className=" max-w-7xl mx-auto mt-5 ">
+   <main className="max-w-7xl mx-auto mt-5 ">
          <DataTable
         columns={columns}
         data={filterProducts}
@@ -70,8 +58,7 @@ export default function Dashboard() {
         subHeader
         subHeaderComponent={
             <form>   
-                <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                <div className="relative max-w-7xl">
+                <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
@@ -88,9 +75,7 @@ export default function Dashboard() {
                         console.log(search)
                         // handleOnChange()
                     }}
-
                     />
-                    <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
 

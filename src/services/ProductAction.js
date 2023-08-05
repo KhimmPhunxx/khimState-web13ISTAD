@@ -51,3 +51,9 @@ export const updateProduct = async (product, id) => {
     })
     return resp
 }
+
+// function for search data add from api
+export const searchProduct = async (title) => {
+    let resp = await fetch(`${base_URL}products?title=${title}`)
+    return resp.json()
+}

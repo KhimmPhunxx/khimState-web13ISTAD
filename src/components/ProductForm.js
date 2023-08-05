@@ -97,7 +97,7 @@ export default function ProductForm({edit}) {
     }
 
   return (
-    <main className='max-w-5xl mx-auto'>    
+    <main className='max-w-5xl mx-auto mt-5'>    
         <div class="mb-3">
             <label for="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">title</label>
             <input 
