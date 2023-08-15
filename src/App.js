@@ -9,11 +9,11 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import ProductForm from './components/ProductForm';
 import Dashboard from './pages/Dashboard';
-import FormLogin from './pages/FormLogin';
 import Contactus from './pages/Contactus';
 import reportWebVitals from './reportWebVitals';
 import NotFoundPage from './pages/NotFoundPage';
 import Book from './pages/Book';
+import LoginForm from './pages/LoginForm';
 
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route path='/*' element={<NotFoundPage />} />
           <Route path='/booking' element={<Book />} />
         </Route>
-        <Route path='/loginform' element={<FormLogin /> } />
+         <Route path='/loginform' element={<LoginForm />} />
       </Routes>
      </>
   );

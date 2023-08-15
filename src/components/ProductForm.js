@@ -3,10 +3,8 @@ import { UpdateProduct, fetchCategories, fileUploadToServer, insertProduct, upda
 import { createBrowserRouter, useLocation, useNavigate  } from 'react-router-dom'
 
 export default function ProductForm({edit}) {
-
     // 
     const location = useLocation()
-
     const [product , setProduct] = useState({
         id: 0,
         title: "",
