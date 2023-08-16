@@ -64,12 +64,12 @@ export default function Navbar() {
                     <NavLink 
                     to="./about-us" 
                     className={({isActive}) => isActive ? "md:text-blue-500 block py-2 pl-3 pr-4 text-blue-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" : "dark:text-white"}
-                    >Shop</NavLink>
+                    >About</NavLink>
                     </li>
                     <li>
                     <NavLink to="/booking"
                      className={({isActive}) => isActive ? "md:text-blue-500 block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-blue-500 md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700":"dark:text-white"}
-                     >Book</NavLink>
+                     >Contact</NavLink>
                     </li>
                     <li>
                     <NavLink to="/datatable" 
