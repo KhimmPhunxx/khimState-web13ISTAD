@@ -1,10 +1,20 @@
-import React from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom'
+import { fetchProfile } from '../redux/actions/ProfileAction'
 
 // use rfc
 export default function Navbar() {
     const navigate = useNavigate()
-  return (
+    const dispatch = useDispatch()
+    const {profile} = useSelector(state => state.profR)
+    const {islogin} = useSelector(state => state.authReducer)
+    const {auth} = useSelector (state => state.authReducer)
+
+    useEffect(() => {
+        // dispatch(fetchProfile(islogin ? auth.access_token : ""))
+    }, [])
+    return (
 
         <header className="sticky top-0 z-10">      
             <nav class="bg-blue-200 border-gray-200 dark:bg-gray-900 border-y border-gray-200 dark:border-gray-700">
@@ -24,7 +34,15 @@ export default function Navbar() {
             onClick={()=> navigate("loginform")}
             type="button" 
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >Sign-Up</button>
+            >
+                {
+                    islogin ? "Logout" : "LogIn"
+                }
+            </button>
+            <img 
+            class="w-10 h-10 rounded-full" 
+            // src={islogin ? profile.avartar : "https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"} 
+            alt="Jese Leos" />
             </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
                 <div class="relative mt-3 md:hidden">

@@ -24,3 +24,4 @@ export const fetchAllProducts = () => {
         .catch(() => console.log("Error to Fetch Categories"))
     }
  }
+//  fetch email and password form postman API john@mail.com 

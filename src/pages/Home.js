@@ -14,6 +14,8 @@ export default function Home(){
     const dispatch = useDispatch()
     const {products} = useSelector(state => state.prodReducer)
     const {isLoading} = useSelector(state => state.prodReducer)
+
+    
     useEffect(() => {
         // subscribe to store
         dispatch(fetchAllProducts())
@@ -37,7 +39,7 @@ export default function Home(){
                         </a> 
                     </div>
                     <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                    <lottie-player src="https://lottie.host/fa30aba8-5eeb-4cdf-9cd4-64a2d6048a3c/oSI7lqg5R3.json" background="#FFFFFF" speed=".5"loop autoplay direction="1" mode="normal"></lottie-player>
+                    <lottie-player src="https://lottie.host/fa30aba8-5eeb-4cdf-9cd4-64a2d6048a3c/oSI7lqg5R3.json" background="#" speed=".5"loop autoplay direction="1" mode="normal"></lottie-player>
                     </div>                
                 </div>
             </section>

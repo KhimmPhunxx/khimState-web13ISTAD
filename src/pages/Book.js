@@ -34,14 +34,14 @@ export default function Book() {
                         {
                             isLoading ?
                             <>
-                            <Loading />
-                            <Loading />
-                            <Loading />
-                            <Loading />
-                            <Loading />
-                            <Loading />
-                            <Loading />
-                            <Loading />
+                                <Loading />
+                                <Loading />
+                                <Loading />
+                                <Loading />
+                                <Loading />
+                                <Loading />
+                                <Loading />
+                                <Loading />
                             </>
                             :
                             products.map((product) => (
