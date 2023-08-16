@@ -2,20 +2,22 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 import { fetchProfile } from '../redux/actions/ProfileAction'
+import { logoutUser } from '../redux/actions/authAction'
 
 // use rfc
 export default function Navbar() {
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {profile} = useSelector(state => state.profR)
     const {islogin} = useSelector(state => state.authReducer)
-    const {auth} = useSelector (state => state.authReducer)
+    const {auth} = useSelector(state => state.authReducer)
 
     useEffect(() => {
-        // dispatch(fetchProfile(islogin ? auth.access_token : ""))
-    }, [])
-    return (
+        dispatch(fetchProfile(islogin && islogin ? auth.access_token : null))
+    }, [islogin])
 
+    return (
         <header className="sticky top-0 z-10">      
             <nav class="bg-blue-200 border-gray-200 dark:bg-gray-900 border-y border-gray-200 dark:border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -31,7 +33,7 @@ export default function Navbar() {
             Insert
             </button>
             <button 
-            onClick={()=> navigate("loginform")}
+            onClick={()=> islogin ? dispatch(logoutUser()) : navigate("loginform")}
             type="button" 
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
             >
@@ -41,7 +43,8 @@ export default function Navbar() {
             </button>
             <img 
             class="w-10 h-10 rounded-full" 
-            // src={islogin ? profile.avartar : "https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"} 
+            // src="https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"
+            src={islogin ? profile.avatar : "https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"} 
             alt="Jese Leos" />
             </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">

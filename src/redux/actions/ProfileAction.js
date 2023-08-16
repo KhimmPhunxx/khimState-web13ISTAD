@@ -6,15 +6,15 @@ export const fetchProfile = (auth) => {
     return (dispatch) => {
         axios(`${base_URL}auth/profile`, {
             headers: {
-                "Content-type" : "application/json",
+                "Content-Type" : "application/json",
                 "Authorization" : `Bearer ${auth}`
             }
         })
-        .then((resp => {
-            if(resp.status == 200){
+        .then((res => {
+            if(res.status == 200){
                 dispatch({
                     type: ActionType.FETCH_PROFILE,
-                    payload: resp.data
+                    payload: res.data
                 })
                 return Promise.resolve()
             }

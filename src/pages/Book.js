@@ -4,12 +4,20 @@ import { fetchAllProducts } from '../redux/actions/ProductActions'
 import Card from '../components/card'
 import { Link } from 'react-router-dom';
 import Loading from './../components/Loading';
+import dev from "./../lottiefile/animation_lldnhdo7.json"
+import { useLottie } from 'lottie-react';
 
 export default function Book() {
     // const [isLoading, setLoading] = useState(true)
     const dispatch = useDispatch()
     const {products} = useSelector(state => state.prodReducer)
     const {isLoading} = useSelector(state => state.prodReducer)
+        const options = {
+          animationData: dev,
+          loop: true
+        };
+      
+        const { View } = useLottie(options);
        
     
     useEffect(() => {
@@ -56,6 +64,11 @@ export default function Book() {
                             ))
                         }
                     </div>
+                    <section>
+                        {
+                            View
+                        }
+                    </section>
        </main>
     )
 }

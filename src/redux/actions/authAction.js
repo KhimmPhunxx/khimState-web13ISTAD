@@ -14,13 +14,24 @@ export const loginUser = (user) => {
         })
         .then(resp => {
             if(resp.status == 201){
-                secureLocalStorage.setItem('auth', resp)
+                secureLocalStorage.setItem('auth', resp.data)
                 dispatch({
-                    type: ActionType.LOGIN_SUCCESS ,
+                    type: ActionType.LOGIN_SUCCESS,
                     payload: resp
                 })
                 return Promise.resolve()
             }
+        })
+        return Promise.resolve()
+    }
+}
+// Logout
+export const logoutUser =  () => {
+    return (dispatch) => {
+        secureLocalStorage.removeItem("auth")
+        dispatch({
+            type: ActionType.LOGOUT,
+            payload: null
         })
         return Promise.resolve()
     }

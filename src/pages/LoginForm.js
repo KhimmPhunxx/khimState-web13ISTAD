@@ -13,7 +13,7 @@ export default function LoginForm(props) {
     
     const [user, setUser] = useState({
         email: "john@mail.com",
-        password: " changeme",
+        password: "changeme"
     })
 
     const handleInputChange = (e) => {
@@ -31,7 +31,7 @@ export default function LoginForm(props) {
     useEffect(() => {
         console.log(islogin)
         console.log('in Storage', secureLocalStorage.getItem('auth'))
-        console.log('auth', auth.data.access_token)
+        console.log('auth:', auth)
     }, [])
 
     const handleSubmit = (e) => {
@@ -41,11 +41,8 @@ export default function LoginForm(props) {
         dispatch(loginUser(user))
         .then(resp => [
             navigate("/")
-        ])
-        
+        ])   
     }
-
-   
 
   return (
     <main className='flex grid md:grid-cols-2 max-w-6xl mx-auto dark:bg-slate-900'>

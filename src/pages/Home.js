@@ -3,9 +3,7 @@ import React, {useEffect} from "react"
 import Card from "../components/card"
 import Loading from "../components/Loading"
 import { Link } from 'react-router-dom';
-import { fetchProducts } from "../services/ProductAction";
 import { useDispatch, useSelector } from "react-redux";
-import { products } from './../data/product';
 import { fetchAllProducts } from "../redux/actions/ProductActions";
 
 export default function Home(){
