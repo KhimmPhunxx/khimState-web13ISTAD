@@ -22,7 +22,7 @@ export default function Navbar() {
             <nav class="bg-blue-200 border-gray-200 dark:bg-gray-900 border-y border-gray-200 dark:border-gray-700">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <Link to="/" class="flex items-center">
-                <img src="https://khimmphunxx.github.io/vakhim-mini-project-web13/img/logo001.webp" class="h-9 mr-3" alt="" />
+                <img src="https://khimmphunxx.github.io/vakhim-mini-project-web13/img/logo001.webp" class="h-12 mr-3" alt="" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CaMTraveL</span>
             </Link>
             <div class="flex md:order-2">
