@@ -42,6 +42,7 @@ export default function Navbar() {
                 }
             </button>
             <img 
+            onClick={() => navigate("./profile")}
             class="w-10 h-10 rounded-full" 
             // src="https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"
             src={islogin ? profile.avatar : "https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"} 

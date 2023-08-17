@@ -85,7 +85,7 @@ export default function About() {
 
       <section className='grid md:grid-cols-2 flex mt-10 gap-10'>
             <h1 className='text-gray-400 text-xl font-light'>
-              <h1 className='text-4xl font-bold text-white mb-3'>We're teamork can us help your problem.</h1>
+              <h1 className='text-4xl text-black font-bold dark:text-white mb-3'>We're teamork can us help your problem.</h1>
             Flowbite helps you connect with friends and communities of people who share your interests. Connecting with your friends and family as well as discovering new ones is easy with features like Groups.
             Flowbite helps you connect with friends and communities of people who share your interests. Connecting with your friends and family as well as discovering new ones is easy with features like Groups.
             Flowbite helps you connect with friends and communities of people who share your interests. Connecting with your friends and family as well as discovering new ones is easy with features like Groups. <br/>

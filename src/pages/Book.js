@@ -65,9 +65,7 @@ export default function Book() {
                         }
                     </div>
                     <section>
-                        {
-                            View
-                        }
+                       
                     </section>
        </main>
     )

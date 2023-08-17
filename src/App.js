@@ -14,6 +14,7 @@ import reportWebVitals from './reportWebVitals';
 import NotFoundPage from './pages/NotFoundPage';
 import Book from './pages/Book';
 import LoginForm from './pages/LoginForm';
+import Profile from './pages/Profile';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path='/contactpage' element={<Contactus />} />
           <Route path='/*' element={<NotFoundPage />} />
           <Route path='/booking' element={<Book />} />
+          <Route path='/profile' element={<Profile />}/>
         </Route>
          <Route path='/loginform' element={<LoginForm />} />
       </Routes>
