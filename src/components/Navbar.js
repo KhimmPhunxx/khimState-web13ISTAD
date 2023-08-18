@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, NavLink, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, NavLink, useNavigate} from 'react-router-dom'
 import { fetchProfile } from '../redux/actions/ProfileAction'
 import { logoutUser } from '../redux/actions/authAction'
 
@@ -47,6 +47,8 @@ export default function Navbar() {
             // src="https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"
             src={islogin ? profile.avatar : "https://cdn.vectorstock.com/i/preview-1x/70/84/default-avatar-profile-icon-symbol-for-website-vector-46547084.jpg"} 
             alt="Jese Leos" />
+            {/* test profile */}
+            
             </div>
                 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
                 <div class="relative mt-3 md:hidden">
