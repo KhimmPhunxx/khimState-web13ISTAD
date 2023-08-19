@@ -95,15 +95,15 @@ export default function ProductForm({edit}) {
     }
 
   return (
-    <main className='max-w-5xl mx-auto mt-5'>    
+    <main className='max-w-3xl mx-auto mt-5 bg-slate-700 p-5 rounded-3xl'>    
         <div class="mb-3">
-            <label for="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">title</label>
+            <label for="base-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
             <input 
             placeholder='input title' 
             type="text" 
             name="title" 
             value={product.title}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
             />
         </div>
@@ -114,7 +114,7 @@ export default function ProductForm({edit}) {
             type="text" 
             value={product.price}
             name="price" 
-            class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
             />
         </div>
@@ -123,7 +123,7 @@ export default function ProductForm({edit}) {
             <select 
             name="categoryId"
             value={product.categoryId} 
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
             >
             <option selected>Please choose category</option>
@@ -143,7 +143,7 @@ export default function ProductForm({edit}) {
             type="text" 
             value={product.description}
             name="description" 
-            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             onChange={onChangeHandler}
             />
         </div>
