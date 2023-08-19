@@ -68,7 +68,7 @@ export default function Profile() {
                 <i class="fa-solid fa-star text-3xl text-amber-500 mr-2"></i>
                 <i class="fa-solid fa-star text-3xl text-amber-500 mr-2"></i>
                 <i class="fa-solid fa-star text-3xl text-amber-500 mr-2"></i>
-                <i class="fa-solid fa-star-half-stroke text-3xl text-amber-500"></i>
+                <i class="fa-solid fa-star-half-stroke text-3xl text-amber-500">4.5/5</i>
                </div>
             </div>
             <div className="max-w-sm ">
@@ -125,7 +125,7 @@ export default function Profile() {
                 <i class="fa-regular fa-star text-3xl text-gray-500 mr-2"></i>
                 <i class="fa-regular fa-star text-3xl text-gray-500 mr-2"></i>
                 <i class="fa-regular fa-star text-3xl text-gray-500 mr-2"></i>
-                <i class="fa-regular fa-star text-3xl text-gray-500 mr-2"></i>
+                <i class="fa-regular fa-star text-3xl text-gray-500 mr-2"> /5</i>
                 
                </div>
                
