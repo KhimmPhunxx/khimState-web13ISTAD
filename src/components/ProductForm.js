@@ -155,7 +155,6 @@ export default function ProductForm({edit}) {
             alt="Preview Image" />
 
         </div>
-
         {/* choose file area */}
         <div className="mb-6">
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>

@@ -44,11 +44,6 @@ export default function Dashboard() {
         fetchProducts()
         .then(resp => setFilterProducts(resp))
     }, [])
-
-    useEffect(() => {
-        fetchProducts()
-        .then(resp => setFilterProducts(resp))
-    }, [])
   return (
    <main className="max-w-7xl mx-auto mt-5 ">
          <DataTable
