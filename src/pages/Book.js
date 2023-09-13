@@ -38,20 +38,25 @@ export default function Book() {
                         [GET] https://api.escuelajs.co/api/v1/products
                         </h1>
                     </p>
+                    
                     <div className="grid content max-w-7xl mx-auto gap-4 md-grid  grid-cols-4 flex"> 
                         {
                             isLoading ?
                             <>
-                                <Loading />
-                                <Loading />
-                                <Loading />
-                                <Loading />
-                                <Loading />
-                                <Loading />
-                                <Loading />
-                                <Loading />
+                            
+                                 <Loading />
+                                 <Loading />
+                                 <Loading />
+                                 <Loading />
+                                 <Loading />
+                                 <Loading />
+                                 <Loading />
+                                 <Loading />
+                                 
+                                
                             </>
                             :
+                            
                             products.map((product) => (
                                 	<div key={product.id}>
                                        <Link to={`/read/${product.id}`}>

@@ -1,6 +1,14 @@
 import React from 'react'
+import dev from './../lottiefile/animation_lmaholnk.json'
+import { useLottie } from 'lottie-react';
 
 export default function Loading() {
+    const options = {
+        animationData: dev,
+        loop: true
+      };
+    
+      const { View } = useLottie(options);
   return (
     
         <div role="status" class="max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
@@ -24,6 +32,7 @@ export default function Loading() {
                 </div>
             </div>
             <span class="sr-only">Loading...</span>
+           
         </div>
 
   )
